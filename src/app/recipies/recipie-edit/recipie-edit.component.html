@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-sm-12">
+        <form [formGroup]="recipieForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button type="submit" [disabled]="!recipieForm.valid" class="btn btn-success">save</button>
+                    <button type="button" class="btn btn-danger" (click)="onCancelRecipie()">cancel</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input id="name" type="text" class="form-control" formControlName="name">
+                    </div>
+                    <span class="help-box"
+                        *ngIf="!recipieForm.get('name').valid && recipieForm.get('name').touched">Enter
+                        a valid
+                        projectname!</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="imgUrl">Image Path</label>
+                        <input id="imgUrl" type="text" class="form-control" formControlName="imgPath" #img>
+                    </div>
+                    <span class="help-box"
+                        *ngIf="!recipieForm.get('imgPath').valid && recipieForm.get('imgPath').touched">Enter
+                        a valid imgPath!</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <img [src]="img.value" class="img-responsive">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" type="text" class="form-control" rows="6"
+                            formControlName="description"></textarea>
+                    </div>
+                    <span class="help-box"
+                        *ngIf="!recipieForm.get('description').valid && recipieForm.get('description').touched">Enter
+                        a valid Description!</span>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-12" formArrayName="ingredients">
+                    <div class="row mb-2 "
+                        *ngFor="let ingredientctrl of recipieForm.get('ingredients')['controls']; let i=index"
+                        [formGroupName]="i">
+                        <div class="col-sm-8 ">
+                            <input type="text" class="form-control" formControlName="name">
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" formControlName="amount">
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-danger" (click)="onDeleteIngredient(i)">X</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-success" (click)="onAddIngredient()">Add
+                                Indredients</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

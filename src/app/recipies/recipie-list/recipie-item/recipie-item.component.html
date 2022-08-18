@@ -1,0 +1,12 @@
+<div class="col-xs-12">
+    <a style="cursor: pointer;" class="list-group-item clearfix  "
+    [routerLink]="[index]"
+    routerLinkActive="active">    
+        <div class="float-start">
+            <h4 class="lisy-group-item-heading"> {{recipie.name}}</h4>
+            <p class="lisy-group-item-text">{{recipie.description}}</p>
+        </div>
+        <span class="float-end">
+            <img [src]="recipie.imgPath" alt="" class="img-responsive" style="max-height: 50px;">
+        </span>
+    </a>
